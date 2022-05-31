@@ -27,40 +27,38 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/', jsonParser, (req, res) => {
   const data = req.body;
   console.log(data)
-  res.sendFile('C:/home/site/wwwroot/public/resources/textOverlay.png')
-  // const myBlob = './public/images/background.png';
-  // const mySecondBlob = './public/images/fog.png';
-  // const imgConverter=async (context,myBlob,mySecondBlob)=>{
-  //   // Reading image
-  //   const image = await Jimp.read(myBlob);
-  //   // const w=image.m
-  //   const photo=await (await Jimp.read(mySecondBlob)).resize(70,90)
-  //  // Defining the text font
-  //   const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
-  //   // image.print(font, 200, 200, data.text);
-  //   // image.contain()
+  // res.sendFile('C:/home/site/wwwroot/public/resources/textOverlay.png')
+    
+  // Reading image
+    const image = await Jimp.read('./public/images/background.png');
+    // const w=image.m
+    const photo=await (await Jimp.read('./public/images/fog.png')).resize(70,90)
+   // Defining the text font
+    const font = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
+    // image.print(font, 200, 200, data.text);
+    // image.contain()
    
-  //       image.print(
-  //         font,
-  //         0,
-  //         0,
-  //         {
-  //           text: "data.text",
-  //           alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-  //           alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
-  //         },
-  //         600,
-  //         450
-  //       ); 
-  //    image.composite(photo,500,70)
-  //  // Writing image after processing
-  //  await image.writeAsync('./public/resources/textOverlay.png');
+        image.print(
+          font,
+          0,
+          0,
+          {
+            text: "data.text",
+            alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+            alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
+          },
+          600,
+          450
+        ); 
+     image.composite(photo,500,70)
+   // Writing image after processing
+   await image.writeAsync('./public/resources/textOverlay.png');
 
-  //     context.log("Image is processed succesfully");
-  //  }
-  //  module.exports=imgConverter(console,myBlob,mySecondBlob)
+    console.log("Image is processed succesfully");
+   
   // res.send({message:"You have to work hard BTW your sent data is ",data})
-    // res.sendFile('C:/home/site/wwwroot/public/resources/textOverlay.png')
+  // If you are running it on your localhost then you have to give The exact address of the processed image in resources folder
+    res.sendFile('C:/home/site/wwwroot/public/resources/textOverlay.png')
 })
 // app.use('/users', usersRouter);
 app.get('/', (req, res) => {
