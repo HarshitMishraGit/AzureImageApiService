@@ -21,9 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', (req, res) => {
-//   res.send({message:"This is working fine"})
-// });
+
 app.post('/', jsonParser, (req, res) => {
   const data = req.body;
   console.log(data)
@@ -80,4 +78,3 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
